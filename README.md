@@ -52,7 +52,7 @@ Developers rely extensively on call stacks to debug their code. Implementing PTC
 
 As an example, consider this simple program:
 ```js
-function foo(n) { 
+function foo(n) {
   return bar(n*2);
 }
 
@@ -73,7 +73,7 @@ JavaScript exceptions will have different error.stack information with PTC enabl
 
 
 ```js
-function foo(n) { 
+function foo(n) {
   return bar(n*2);
 }
 
@@ -105,7 +105,12 @@ This may be a problem for developers who use this information to debug their pro
 
 STC avoids this problem by making tail calls an explicit opt-in. Code that works today continues to work including any error.stack information collected and reported to servers.
 
-There is the additional complexity with how to standardize Error.stack in light of elided frames. STC gives us an obvious path forward, but the path forward is less obvious with PTC. (See #6) 
+There is the additional complexity with how to standardize Error.stack in light of elided frames. STC gives us an obvious path forward, but the path forward is less obvious with PTC. (See #6)
+
+### Cross-Realm Tail Calls
+
+PTC exposes previously hidden implementation details about function objects. In particular, Mozilla has voiced that it will be impossible for them to implement PTC across realm boundaries because of their membrane-based security model. While there has already been some discussion (see #2) of the merits of these claims, and [an open PR](https://github.com/tc39/ecma262/pull/508) to address these issues in the current spec, STC provides a convenient opportunity to revisit these concerns directly, and to allow for implementations to be compliant by throwing warnings in this case, if it is impossible to complete the tail call while consuming linear resources.
+
 
 ### Developer Intent
 
@@ -115,7 +120,7 @@ Another potential benefit of STC is that we know what the developer is intending
 
 ## Proposal
 
-This proposal wishes to advance a syntactic opt-in for tail calls. Presented above is one likely alternative: `return continue`. The `return continue` statement indicates that what follows is a tail call and thus should not grow the stack. Using `return continue` with a non-tail call can be syntax error in most cases (eg. `return continue 1 + foo()` would throw early). `return continue` would also enable errors or warning for syntactically proper tail calls that cannot be guaranteed to not grow the stack, for example cross-realm calls in FireFox (see #2). Additionally, developers opting to use `return continue` can manage the complexity of elided stack frames and thus less invasive solutions (or, perhaps, no solution) is required for debugging scenarios, and the semantics of existing code is maintained.
+This proposal wishes to advance a syntactic opt-in for tail calls. Presented above is one likely alternative: `return continue`. The `return continue` statement indicates that what follows is a tail call and thus should not grow the stack. Using `return continue` with a non-tail call can be syntax error in most cases (eg. `return continue 1 + foo()` would throw early). `return continue` would also enable errors or warning for syntactically proper tail calls that cannot be guaranteed to not grow the stack, for example cross-realm calls in FireFox. Additionally, developers opting to use `return continue` can manage the complexity of elided stack frames and thus less invasive solutions (or, perhaps, no solution) is required for debugging scenarios, and the semantics of existing code is maintained.
 
 
 ### Syntax Alternatives
@@ -136,7 +141,7 @@ function factorial(n, acc = 1) {
 let factorial = (n, acc = 1) => continue
   n == 1 ? acc
          : factorial(n - 1, acc * n);
-         
+
 // or, if continue is an expression form:
 let factorial = (n, acc = 1) =>
   n == 1 ? acc
