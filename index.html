@@ -1,0 +1,79 @@
+<!doctype html>
+<head><meta charset="utf-8"><script type="application/json" id="menu-search-biblio">[{"type":"clause","id":"ReturnExpression-grammar","aoid":null,"title":"ReturnExpression Grammar","number":"1","namespace":"<no location>","location":"","key":"ReturnExpression Grammar"},{"type":"clause","id":"ReturnExpression-grammar-examples","aoid":null,"title":"Examples","number":"1.1","namespace":"<no location>","location":"","key":"Examples"},{"type":"clause","id":"sec-copyright-and-software-license","aoid":null,"title":"Copyright & Software License","number":"A","namespace":"<no location>","location":"","key":"Copyright & Software License"},{"type":"production","id":"prod-ReturnStatement","name":"ReturnStatement","namespace":"<no location>","location":"","key":"ReturnStatement"},{"type":"production","id":"prod-ConciseBody","name":"ConciseBody","namespace":"<no location>","location":"","key":"ConciseBody"},{"type":"production","id":"prod-Expression","name":"Expression","namespace":"<no location>","location":"","key":"Expression"},{"type":"production","id":"prod-AssignmentExpression","name":"AssignmentExpression","namespace":"<no location>","location":"","key":"AssignmentExpression"},{"type":"production","id":"prod-ConditionalExpression","name":"ConditionalExpression","namespace":"<no location>","location":"","key":"ConditionalExpression"},{"type":"production","id":"prod-ReturnExpression","name":"ReturnExpression","namespace":"<no location>","location":"","key":"ReturnExpression"}]</script></head><body><div id="menu-toggle">☰</div><div id="menu"><div id="menu-search"><input type="text" id="menu-search-box" placeholder="Search..."><div id="menu-search-results" class="inactive"></div></div><div id="menu-toc"><ol class="toc"><li><span class="item-toggle">◢</span><a href="#ReturnExpression-grammar" title="ReturnExpression Grammar"><span class="secnum">1</span> ReturnExpression Grammar</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#ReturnExpression-grammar-examples" title="Examples"><span class="secnum">1.1</span> Examples</a></li></ol></li><li><span class="item-toggle-none"></span><a href="#sec-copyright-and-software-license" title="Copyright &amp; Software License"><span class="secnum">A</span> Copyright &amp; Software License</a></li></ol></div></div>
+<link rel="stylesheet" href="ecmarkup.css">
+<script src="ecmarkup.js"></script>
+<emu-clause id="ReturnExpression-grammar">
+  <h1><span class="secnum">1</span>ReturnExpression Grammar<span class="utils"><span class="anchor"><a href="#ReturnExpression-grammar">#</a></span></span></h1>
+  <emu-grammar><emu-production name="ReturnStatement" params="Yield" id="prod-ReturnStatement">
+    <emu-nt params="Yield"><a href="#prod-ReturnStatement">ReturnStatement</a><emu-mods><emu-params>[Yield]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="0b293381"><emu-t>return</emu-t><emu-t>;</emu-t></emu-rhs>
+    <emu-rhs a="11907ced"><emu-t>return</emu-t><emu-gann>[no <emu-nt><a href="https://tc39.github.io/ecma262/#prod-LineTerminator">LineTerminator</a></emu-nt> here]</emu-gann><emu-nt params="In, ?Yield, ReturnExpr"><a href="#prod-Expression">Expression</a><emu-mods><emu-params>[In, ?Yield, ReturnExpr]</emu-params></emu-mods></emu-nt></emu-rhs>
+</emu-production>
+<emu-production name="ConciseBody" params="In" id="prod-ConciseBody">
+    <emu-nt params="In"><a href="#prod-ConciseBody">ConciseBody</a><emu-mods><emu-params>[In]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="af055924"><emu-gann>[lookahead ≠ <emu-t>{</emu-t>]</emu-gann><emu-nt params="?In, ReturnExpr"><a href="#prod-AssignmentExpression">AssignmentExpression</a><emu-mods><emu-params>[?In, ReturnExpr]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="004ac004"><emu-t>{</emu-t><emu-nt><a href="https://tc39.github.io/ecma262/#prod-FunctionBody">FunctionBody</a></emu-nt><emu-t>}</emu-t></emu-rhs>
+</emu-production>
+<emu-production name="Expression" params="In, Yield, ReturnExpr" id="prod-Expression">
+    <emu-nt params="In, Yield, ReturnExpr"><a href="#prod-Expression">Expression</a><emu-mods><emu-params>[In, Yield, ReturnExpr]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="65c862a3"><emu-nt params="?In, ?Yield, ?ReturnExpr"><a href="#prod-AssignmentExpression">AssignmentExpression</a><emu-mods><emu-params>[?In, ?Yield, ?ReturnExpr]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="a6de654d"><emu-nt params="?In, ?Yield"><a href="#prod-Expression">Expression</a><emu-mods><emu-params>[?In, ?Yield]</emu-params></emu-mods></emu-nt><emu-t>,</emu-t><emu-nt params="?In, ?Yield, ?ReturnExpr"><a href="#prod-AssignmentExpression">AssignmentExpression</a><emu-mods><emu-params>[?In, ?Yield, ?ReturnExpr]</emu-params></emu-mods></emu-nt></emu-rhs>
+</emu-production>
+<emu-production name="AssignmentExpression" params="In, Yield, ReturnExpr" id="prod-AssignmentExpression">
+    <emu-nt params="In, Yield, ReturnExpr"><a href="#prod-AssignmentExpression">AssignmentExpression</a><emu-mods><emu-params>[In, Yield, ReturnExpr]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="6b4625c3"><emu-nt params="?In, ?Yield, ?ReturnExpr"><a href="#prod-ConditionalExpression">ConditionalExpression</a><emu-mods><emu-params>[?In, ?Yield, ?ReturnExpr]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="197afb63" constraints="+Yield"><emu-constraints>[+Yield]</emu-constraints><emu-nt params="?In"><a href="https://tc39.github.io/ecma262/#prod-YieldExpression">YieldExpression</a><emu-mods><emu-params>[?In]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="a9fcaed4"><emu-nt params="?In, ?Yield"><a href="https://tc39.github.io/ecma262/#prod-ArrowFunction">ArrowFunction</a><emu-mods><emu-params>[?In, ?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="4894ae74"><emu-nt params="?Yield"><a href="https://tc39.github.io/ecma262/#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-t>=</emu-t><emu-nt params="?In, ?Yield"><a href="#prod-AssignmentExpression">AssignmentExpression</a><emu-mods><emu-params>[?In, ?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="10c3e4bb"><emu-nt params="?Yield"><a href="https://tc39.github.io/ecma262/#prod-LeftHandSideExpression">LeftHandSideExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-nt><a href="https://tc39.github.io/ecma262/#prod-AssignmentOperator">AssignmentOperator</a></emu-nt><emu-nt params="?In, ?Yield"><a href="#prod-AssignmentExpression">AssignmentExpression</a><emu-mods><emu-params>[?In, ?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="ac43bf0d" constraints="+ReturnExpr"><emu-constraints>[+ReturnExpr]</emu-constraints><emu-nt params="?Yield"><a href="#prod-ReturnExpression">ReturnExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+</emu-production>
+<emu-production name="ConditionalExpression" params="In, Yield, ReturnExpr" id="prod-ConditionalExpression">
+    <emu-nt params="In, Yield, ReturnExpr"><a href="#prod-ConditionalExpression">ConditionalExpression</a><emu-mods><emu-params>[In, Yield, ReturnExpr]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="c932f215"><emu-nt params="?In, ?Yield"><a href="https://tc39.github.io/ecma262/#prod-LogicalORExpression">LogicalORExpression</a><emu-mods><emu-params>[?In, ?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="5b60e963"><emu-nt params="?In, ?Yield"><a href="https://tc39.github.io/ecma262/#prod-LogicalORExpression">LogicalORExpression</a><emu-mods><emu-params>[?In, ?Yield]</emu-params></emu-mods></emu-nt><emu-t>?</emu-t><emu-nt params="In, ?Yield, ?ReturnExpr"><a href="#prod-AssignmentExpression">AssignmentExpression</a><emu-mods><emu-params>[In, ?Yield, ?ReturnExpr]</emu-params></emu-mods></emu-nt><emu-t>:</emu-t><emu-nt params="?In, ?Yield, ?ReturnExpr"><a href="#prod-AssignmentExpression">AssignmentExpression</a><emu-mods><emu-params>[?In, ?Yield, ?ReturnExpr]</emu-params></emu-mods></emu-nt></emu-rhs>
+</emu-production>
+<emu-production name="ReturnExpression" params="Yield" id="prod-ReturnExpression">
+    <emu-nt params="Yield"><a href="#prod-ReturnExpression">ReturnExpression</a><emu-mods><emu-params>[Yield]</emu-params></emu-mods></emu-nt><emu-geq>:</emu-geq><emu-rhs a="1f0f1795"><emu-t>continue</emu-t><emu-nt params="?Yield"><a href="https://tc39.github.io/ecma262/#prod-MemberExpression">MemberExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-nt params="?Yield"><a href="https://tc39.github.io/ecma262/#prod-Arguments">Arguments</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+    <emu-rhs a="707faded"><emu-t>continue</emu-t><emu-nt params="?Yield"><a href="https://tc39.github.io/ecma262/#prod-MemberExpression">MemberExpression</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt><emu-nt params="?Yield"><a href="https://tc39.github.io/ecma262/#prod-TemplateLiteral">TemplateLiteral</a><emu-mods><emu-params>[?Yield]</emu-params></emu-mods></emu-nt></emu-rhs>
+</emu-production></emu-grammar>
+
+  <emu-clause id="ReturnExpression-grammar-examples">
+    <h1><span class="secnum">1.1</span>Examples<span class="utils"><span class="anchor"><a href="#ReturnExpression-grammar-examples">#</a></span></span></h1>
+
+    <p>The following examples are all syntactically valid:  </p>
+    <pre><code class="javascript hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo1</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">continue</span> bar(); }
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo2</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">continue</span> bar<span class="hljs-string">`template`</span>; }
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo3</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> bool ? <span class="hljs-keyword">continue</span> bar() : baz }
+
+<span class="hljs-keyword">let</span> foo4 = () =&gt; <span class="hljs-keyword">continue</span> foo();
+<span class="hljs-keyword">let</span> foo5 = () =&gt; bool ? <span class="hljs-keyword">continue</span> bar() : baz;</code></pre>
+
+    <p>The following examples are all syntax errors:  </p>
+    <pre><code class="javascript hljs"><span class="hljs-keyword">continue</span> bar();
+<span class="hljs-comment">// continue in a statement context is still a ContinueStatement.</span>
+
+(<span class="hljs-keyword">continue</span> bar());
+<span class="hljs-comment">// continue is only syntactically valid under a return statement</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo1</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">continue</span> baz; }
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo2</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">continue</span> <span class="hljs-number">1</span> + baz() }
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo3</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">continue</span> baz(), <span class="hljs-number">1</span> }
+<span class="hljs-comment">// things that aren't tail calls are syntax errors</span></code></pre>
+  </emu-clause>
+</emu-clause><emu-annex id="sec-copyright-and-software-license">
+      <h1><span class="secnum">A</span>Copyright &amp; Software License<span class="utils"><span class="anchor"><a href="#sec-copyright-and-software-license">#</a></span></span></h1>
+      
+      <h2>Copyright Notice</h2>
+      <p>© 2016 Brian Terlson, Eric Faust</p>
+
+      <h2>Software License</h2>
+      <p>All Software contained in this document ("Software") is protected by copyright and is being made available under the "BSD License", included below. This Software may be subject to third party rights (rights from parties other than Ecma International), including patent rights, and no licenses under such third party rights are granted under this license even if the third party concerned is a member of Ecma International. SEE THE ECMA CODE OF CONDUCT IN PATENT MATTERS AVAILABLE AT http://www.ecma-international.org/memento/codeofconduct.htm FOR INFORMATION REGARDING THE LICENSING OF PATENT CLAIMS THAT ARE REQUIRED TO IMPLEMENT ECMA INTERNATIONAL STANDARDS.</p>
+
+<p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
+
+<ol>
+  <li>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</li>
+  <li>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</li>
+  <li>Neither the name of the authors nor Ecma International may be used to endorse or promote products derived from this software without specific prior written permission.</li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE ECMA INTERNATIONAL "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL ECMA INTERNATIONAL BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+    </emu-annex>
+</body>
