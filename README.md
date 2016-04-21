@@ -151,15 +151,34 @@ let factorial = (n, acc = 1) =>
 #### Function sigil
 
 ```js
-// # sigil
+// # sigil, though it's already 'claimed' by private state.
 #function() { /* all calls in tail position are tail calls */ }
+
+// Note that it's hard to decide how to readably sigil arrow functions.
+
+// This is probably most readable.
+() #=> expr
+// This is probably most in line with the non-arrow sigil.
+#() => expr
 
 // rec sigil similar to async functions
 rec function() { /* likewise */ }
+rec () => expr
 ```
 
 #### !-return
 
 ```js
 function () { !return expr }
+
+// It's a little tricky to do arrow functions in this method.
+// Obviously, we cannot push the ! into the expression, and even
+// function level sigils are pretty ugly.
+
+// Since ! already has a strong meaning, it's hard to read this as
+// a tail recursive function, rather than an expression.
+!() => expr
+
+// We could do like we did for # above, but it also reads strangely:
+() !=> expr
 ```
