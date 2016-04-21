@@ -1,0 +1,67 @@
+<pre class=metadata>
+contributors: Brian Terlson, Eric Faust
+</pre>
+<link rel="stylesheet" href="ecmarkup.css">
+<script src="ecmarkup.js"></script>
+<emu-clause id="ReturnExpression-grammar">
+  <h1>ReturnExpression Grammar</h1>
+  <emu-grammar>
+    ReturnStatement[Yield] :
+      `return` `;`
+      `return` [no |LineTerminator| here] Expression[In, ?Yield, ReturnExpr]
+
+    ConciseBody[In] :
+      [lookahead != `{`] AssignmentExpression[?In, ReturnExpr]
+      `{` FunctionBody `}`
+
+    Expression[In, Yield, ReturnExpr] :
+      AssignmentExpression[?In, ?Yield, ?ReturnExpr]
+      Expression[?In, ?Yield] `,` AssignmentExpression[?In, ?Yield, ?ReturnExpr]
+
+    AssignmentExpression[In, Yield, ReturnExpr] :
+      ConditionalExpression[?In, ?Yield, ?ReturnExpr]
+      [+Yield] YieldExpression[?In]
+      ArrowFunction[?In, ?Yield]
+      LeftHandSideExpression[?Yield] `=` AssignmentExpression[?In, ?Yield]
+      LeftHandSideExpression[?Yield] AssignmentOperator AssignmentExpression[?In, ?Yield]
+      [+ReturnExpr] ReturnExpression[?Yield]
+
+    ConditionalExpression[In, Yield, ReturnExpr] :
+      LogicalORExpression[?In, ?Yield]
+      LogicalORExpression[?In, ?Yield] `?` AssignmentExpression[In, ?Yield, ?ReturnExpr] `:` AssignmentExpression[?In, ?Yield, ?ReturnExpr]
+
+    ReturnExpression[Yield] :
+      `continue` MemberExpression[?Yield] Arguments[?Yield]
+      `continue` CallExpression[?Yield] Arguments[?Yield]
+      `continue` MemberExpression[?Yield] TemplateLiteral[?Yield]
+      `continue` CallExpression[?Yield] TemplateLiteral[?Yield]
+  </emu-grammar>
+
+  <emu-clause id="ReturnExpression-grammar-examples">
+    <h1>Examples</h1>
+
+    <p>The following examples are all syntactically valid: </p>
+    <pre><code class=javascript>
+      function foo1() { return continue bar(); }
+      function foo2() { return continue bar`template`; }
+      function foo3() { return bool ? continue bar() : baz }
+
+      let foo4 = () =&gt; continue foo();
+      let foo5 = () =&gt; bool ? continue bar() : baz;
+    </pre></code>
+
+    <p>The following examples are all syntax errors: </p>
+    <pre><code class=javascript>
+      continue bar();
+      // continue in a statement context is still a ContinueStatement.
+
+      (continue bar());
+      // continue is only syntactically valid under a return statement
+
+      function foo1() { return continue baz; }
+      function foo2() { return continue 1 + baz() }
+      function foo3() { return continue baz(), 1 }
+      // things that aren't tail calls are syntax errors
+    </pre></code>
+  </emu-clause>
+</emu-clause>

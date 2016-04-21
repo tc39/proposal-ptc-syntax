@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "name": "proposal-ptc-syntax",
+  "description": "Syntax for ptc",
+  "version": "0.0.1",
+  "author": "Brian Terlson",
+  "dependencies": {
+    "ecmarkup": "^3.2.1"
+  },
+  "scripts": {
+    "update-pages": "node node_modules/ecmarkup/bin/ecmarkup.js spec.html _index.html --css _ecmarkup.css --js _ecmarkup.js && git checkout gh-pages && rm index.html ecmarkup.css ecmarkup.js && mv _index.html index.html && mv _ecmarkup.css ecmarkup.css && mv _ecmarkup.js ecmarkup.js && git add index.html ecmarkup.js ecmarkup.css && git commit -m \"update pages\" && git checkout master"
+  }
+}
