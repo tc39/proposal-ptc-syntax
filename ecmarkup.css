@@ -123,6 +123,7 @@ emu-production {
     display: block;
     margin-top: 1em;
     margin-bottom: 1em;
+    margin-left: 5ex;
 }
 
 
@@ -353,7 +354,7 @@ table.lightweight-table td, table.lightweight-table th {
 }
 
 /* diff styles */
-ins, tr.ins > td, li.ins {
+ins {
     background-color: #e0f8e0;
     text-decoration: none;
     border-bottom: 1px solid #396;
@@ -363,17 +364,12 @@ ins.block {
     display: block;
 }
 
-del, tr.del > td, li.del {
+del {
     background-color: #fee;
-    text-decoration: line-through;
 }
 
 del.block {
     display: block;
-}
-
-tr.ins > td > ins, li.ins > ins {
-  border: 0;
 }
 
 /* Menu Styles */
