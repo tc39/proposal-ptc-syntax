@@ -3,8 +3,8 @@ contributors: Brian Terlson, Eric Faust
 </pre>
 <link rel="stylesheet" href="ecmarkup.css">
 <script src="ecmarkup.js"></script>
-<emu-clause id="ReturnExpression-grammar">
-  <h1>ReturnExpression Grammar</h1>
+<emu-clause id="TailCallExpression-grammar">
+  <h1>TailCallExpression Grammar</h1>
   <emu-grammar>
     ReturnStatement[Yield] :
       `return` `;`
@@ -24,20 +24,20 @@ contributors: Brian Terlson, Eric Faust
       ArrowFunction[?In, ?Yield]
       LeftHandSideExpression[?Yield] `=` AssignmentExpression[?In, ?Yield]
       LeftHandSideExpression[?Yield] AssignmentOperator AssignmentExpression[?In, ?Yield]
-      [+ReturnExpr] ReturnExpression[?Yield]
+      [+ReturnExpr] TailCallExpression[?Yield]
 
     ConditionalExpression[In, Yield, ReturnExpr] :
       LogicalORExpression[?In, ?Yield]
       LogicalORExpression[?In, ?Yield] `?` AssignmentExpression[In, ?Yield, ?ReturnExpr] `:` AssignmentExpression[?In, ?Yield, ?ReturnExpr]
 
-    ReturnExpression[Yield] :
+    TailCallExpression[Yield] :
       `continue` MemberExpression[?Yield] Arguments[?Yield]
       `continue` CallExpression[?Yield] Arguments[?Yield]
       `continue` MemberExpression[?Yield] TemplateLiteral[?Yield]
       `continue` CallExpression[?Yield] TemplateLiteral[?Yield]
   </emu-grammar>
 
-  <emu-clause id="ReturnExpression-grammar-examples">
+  <emu-clause id="TailCallExpression-grammar-examples">
     <h1>Examples</h1>
 
     <p>The following examples are all syntactically valid: </p>
