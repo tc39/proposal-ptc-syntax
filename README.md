@@ -17,7 +17,7 @@ Or, using an arrow function:
 
 ```js
 let factorial = (n, acc = 1) =>
-  n == 1 ? continue acc
+  n == 1 ? acc
          : continue factorial(n - 1, acc * n);
 ```
 
