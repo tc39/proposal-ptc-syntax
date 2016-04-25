@@ -16,9 +16,9 @@ function factorial(n, acc = 1) {
 Or, using an arrow function:
 
 ```js
-let factorial = (n, acc = 1) => continue
-  n == 1 ? acc
-         : factorial(n - 1, acc * n);
+let factorial = (n, acc = 1) =>
+  n == 1 ? continue acc
+         : continue factorial(n - 1, acc * n);
 ```
 
 ## History &amp; Background
