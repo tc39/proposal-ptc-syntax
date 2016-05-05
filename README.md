@@ -44,7 +44,7 @@ A number of issues have been raised with the PTC design. While many of these iss
 
 There is a belief among some implementers and developers at large that PTC is an optimization strategy and that by enabling PTC, an engine will be making code run faster. This belief is validated by the JSC team's implementation which shows some performance wins in some cases. However, this belief is invalidated by the v8 team which sees it as mostly performance neutral, and the Chakra team which, due to other constraints, may not be able to implement the feature without regressing performance of existing code that happens to include tail calls or sacrificing spec conformance.
 
-Because PTC automatically opts-in a bunch of web code into using tail calls, a performance degredation is a very serious concern. (See #7). STC side-steps this problem by making it intentional when to use the feature which can involve an evaluation of implementations and whether using the feature will result in desirable performance characteristics for the unique scenario.
+Because PTC automatically opts-in a bunch of web code into using tail calls, a performance degradation is a very serious concern. (See #7). STC side-steps this problem by making it intentional when to use the feature which can involve an evaluation of implementations and whether using the feature will result in desirable performance characteristics for the unique scenario.
 
 ### Developer Tools
 
